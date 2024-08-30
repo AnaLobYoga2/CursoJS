@@ -33,21 +33,36 @@ let servicios = [
 {id: "ID: TBB", nombre: "Taller Balances en brazos", valor:25000},
 ]
 
-let contenedor= document.createElement ("div");
+servicios.forEach((servicio, index) => {
+    let contenedor = document.createElement("div");
 
-contenedor.innerHTML= `<h2> ID: ${servicios.id}</h2>;
-                       <h3> Servicio: ${servicios.nombre}</h3>;
-                       <p> Valor: ${servicios.valor}</p>`
+    contenedor.innerHTML = `
+        <h3>${servicio.id}</h3>
+        <h2>Servicio: ${servicio.nombre}</h2>
+        <h3>Valor: ${servicio.valor}</h3>
+        <button id="btn-${index}" class="btn-comprar">COMPRAR</button>`;
 
-document.body.appendchild (contenedor);
+    document.body.appendChild(contenedor);
+});
+
+const carrito= [];
+
+document.querySelectorAll('.btn-comprar').forEach((button, index) => {
+    button.addEventListener('click', () => {
+        let servicioSeleccionado = servicios[index];
+        carrito.push(servicioSeleccionado); 
+        console.log(carrito); 
+        alert(`Has añadido ${servicioSeleccionado.nombre} al carrito`);
+    });
+});
+
+
 
 /* for (let i=0; i<servicios.length; i++){
     console.log (servicios[i].id, servicios[i].nombre, servicios[i].valor)
-} */
+} 
 
-let formulario= document.createElement ("form");
 
-formulario.innerHTML= `<`
 
 const carrito= [];
 
@@ -61,4 +76,4 @@ comprar();
 console.log("Contenido del carrito:");
 for (const serviciosid of carrito){
  console.log (carrito)
-}
+}*/
