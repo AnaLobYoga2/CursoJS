@@ -32,14 +32,59 @@ let servicios = [
 {id: "ID: TEC", nombre: "Taller Extensión de columna", valor:25000},
 {id: "ID: TBB", nombre: "Taller Balances en brazos", valor:25000},
 ]
-
 servicios.forEach((servicio, index) => {
     let contenedor = document.createElement("div");
 
     contenedor.innerHTML = `
         <h3>${servicio.id}</h3>
         <h2>Servicio: ${servicio.nombre}</h2>
-        <h3>Valor: ${servicio.valor}</h3>
+        <h3>Valor: $ ${servicio.valor}</h3>
+        <button id="btn-${index}" class="btn-comprar">COMPRAR</button>`;
+
+    document.body.appendChild(contenedor);
+});
+
+const carrito= [];
+
+document.querySelectorAll('.btn-comprar').forEach((button, index) => {
+    button.addEventListener('click', () => {
+        let servicioSeleccionado = servicios[index];
+        carrito.push(servicioSeleccionado); 
+        console.log(carrito); 
+
+        let miCompra = document.createElement("div");
+        miCompra.classList.add("popup");
+        miCompra.innerHTML = `
+            <h2>Mi compra:</h2>
+            <p>${servicioSeleccionado.nombre} - $${servicioSeleccionado.valor}</p>
+            <button id="add-popup">Añadir</button>
+            <button id="close-popup">Cerrar</button>`;
+        document.body.appendChild(miCompra);
+
+        let overlay = document.createElement("div");
+        overlay.classList.add("popup-overlay");
+        document.body.appendChild(overlay);
+
+        document.getElementById("add-popup").addEventListener('click', () => {
+            carrito.push(servicioSeleccionado);
+            document.body.removeChild(miCompra);
+            document.body.removeChild(overlay);
+        })
+        document.getElementById("close-popup").addEventListener("click", () => {
+            document.body.removeChild(miCompra);
+            document.body.removeChild(overlay);
+        });
+    });
+})
+
+
+/* servicios.forEach((servicio, index) => {
+    let contenedor = document.createElement("div");
+
+    contenedor.innerHTML = `
+        <h3>${servicio.id}</h3>
+        <h2>Servicio: ${servicio.nombre}</h2>
+        <h3>Valor: $ ${servicio.valor}</h3>
         <button id="btn-${index}" class="btn-comprar">COMPRAR</button>`;
 
     document.body.appendChild(contenedor);
@@ -53,8 +98,15 @@ document.querySelectorAll('.btn-comprar').forEach((button, index) => {
         carrito.push(servicioSeleccionado); 
         console.log(carrito); 
         alert(`Has añadido ${servicioSeleccionado.nombre} al carrito`);
+
+        let miCompra = document.createElement("div");
+        miCompra.innerHTML = `<h2>Mi compra: ${servicioSeleccionado.nombre} $ ${servicioSeleccionado.valor}</h2>`;
+        document.body.appendChild(miCompra);
     });
 });
+ */
+
+
 
 
 
