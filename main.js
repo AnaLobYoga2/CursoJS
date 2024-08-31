@@ -44,13 +44,16 @@ servicios.forEach((servicio, index) => {
     document.body.appendChild(contenedor);
 });
 
+let verCarrito= document.createElement("button");
+verCarrito.id="showPurchase";
+verCarrito.innerText = `VER CARRITO`;
+document.body.appendChild(verCarrito);
+
 const carrito= [];
 
 document.querySelectorAll('.btn-comprar').forEach((button, index) => {
     button.addEventListener('click', () => {
         let servicioSeleccionado = servicios[index];
-        carrito.push(servicioSeleccionado); 
-        console.log(carrito); 
 
         let miCompra = document.createElement("div");
         miCompra.classList.add("popup");
@@ -58,7 +61,7 @@ document.querySelectorAll('.btn-comprar').forEach((button, index) => {
             <h2>Mi compra:</h2>
             <p>${servicioSeleccionado.nombre} - $${servicioSeleccionado.valor}</p>
             <button id="add-popup">Añadir</button>
-            <button id="close-popup">Cerrar</button>`;
+            <button id="close-popup">Cancelar</button>`;
         document.body.appendChild(miCompra);
 
         let overlay = document.createElement("div");
@@ -66,7 +69,8 @@ document.querySelectorAll('.btn-comprar').forEach((button, index) => {
         document.body.appendChild(overlay);
 
         document.getElementById("add-popup").addEventListener('click', () => {
-            carrito.push(servicioSeleccionado);
+            carrito.push(servicioSeleccionado); 
+            console.log(carrito); 
             document.body.removeChild(miCompra);
             document.body.removeChild(overlay);
         })
@@ -76,6 +80,37 @@ document.querySelectorAll('.btn-comprar').forEach((button, index) => {
         });
     });
 })
+
+document.getElementById("showPurchase").addEventListener("click", () => {
+    let carritoDiv = document.createElement("div");
+    carritoDiv.classList.add("popup");
+
+    let total = 0;
+
+    carrito.forEach(item => {
+        carritoDiv.innerHTML += `
+            <h3>${item.id}</h3>
+            <h2>Servicio: ${item.nombre}</h2>
+            <h3>Valor: $${item.valor}</h3>`;
+        total += item.valor;
+    });
+
+    carritoDiv.innerHTML += `<h3>Total: $${total}</h3>`;
+    document.body.appendChild(carritoDiv);
+
+    carritoDiv.innerHTML += `<button id="close-popup">Cerrar</button>`;
+    document.body.appendChild(carritoDiv);
+
+    let overlay = document.createElement("div");
+    overlay.classList.add("popup-overlay");
+    document.body.appendChild(overlay);
+
+    document.getElementById("close-popup").addEventListener("click", () => {
+        document.body.removeChild(carritoDiv);
+        document.body.removeChild(overlay);
+});
+})
+
 
 
 /* servicios.forEach((servicio, index) => {

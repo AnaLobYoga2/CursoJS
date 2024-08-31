@@ -33,6 +33,8 @@ body div h3 {
 
 body div button {
   background-color: black;
+  border-color: black;
+  border-style: solid;
   color: aliceblue;
 }
 
@@ -46,6 +48,7 @@ body .popup {
   border: 2px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  display: block;
 }
 
 body .popup button {
@@ -61,6 +64,19 @@ body .popup-overlay {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
+}
+
+body #showPurchase {
+  background-color: black;
+  color: aliceblue;
+  padding: 10px 20px;
+  border: 2px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  position: fixed;
+  top: 40px;
+  right: 20px;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=styles.css.map */
