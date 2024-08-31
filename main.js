@@ -36,7 +36,6 @@ servicios.forEach((servicio, index) => {
     let contenedor = document.createElement("div");
 
     contenedor.innerHTML = `
-        <h3>${servicio.id}</h3>
         <h2>Servicio: ${servicio.nombre}</h2>
         <h3>Valor: $ ${servicio.valor}</h3>
         <button id="btn-${index}" class="btn-comprar">COMPRAR</button>`;
@@ -71,6 +70,9 @@ document.querySelectorAll('.btn-comprar').forEach((button, index) => {
         document.getElementById("add-popup").addEventListener('click', () => {
             carrito.push(servicioSeleccionado); 
             console.log(carrito); 
+
+            sessionStorage.setItem('carrito', JSON.stringify(carrito));
+
             document.body.removeChild(miCompra);
             document.body.removeChild(overlay);
         })
@@ -80,7 +82,10 @@ document.querySelectorAll('.btn-comprar').forEach((button, index) => {
         });
     });
 })
-
+const carritoGuardado = sessionStorage.getItem('carrito');
+if (carritoGuardado) {
+    carrito.push(...JSON.parse(carritoGuardado));
+} 
 document.getElementById("showPurchase").addEventListener("click", () => {
     let carritoDiv = document.createElement("div");
     carritoDiv.classList.add("popup");
