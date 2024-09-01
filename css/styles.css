@@ -10,11 +10,24 @@ body h1 {
   padding: 30px;
   background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
+  font-size: 300%;
+  color: rgb(227, 137, 57);
+  font-family: "Inconsolata", monospace;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 body .main {
   text-align: center;
   text-decoration: underline;
+  color: #1a2222;
+  font-family: "Inconsolata", monospace;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 body div {
@@ -25,17 +38,41 @@ body div {
 
 body div h2 {
   padding: 1%;
+  color: #1a2222;
+  font-family: "Inconsolata", monospace;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 body div h3 {
   padding: 1%;
+  color: black;
+  font-family: "Inconsolata", monospace;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 body div button {
-  background-color: black;
-  border-color: black;
-  border-style: solid;
-  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  color: #1a2222 !important;
+  font-family: "Nunito Sans", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 700px;
+  font-style: normal;
+  font-variation-settings: "wdth" 100, "YTLC" 500;
+  padding: 6px;
+  background-color: rgb(227, 137, 57);
+  border-color: rgb(227, 137, 57);
+}
+body div button:hover {
+  background-color: #1a2222 !important;
+  color: #ee5623 !important;
+  border-color: #ee5623 !important;
 }
 
 body .popup {
@@ -52,8 +89,17 @@ body .popup {
 }
 
 body .popup button {
-  display: block;
-  margin: 20px auto 0;
+  display: flex;
+  justify-content: center;
+  color: #1a2222 !important;
+  font-family: "Nunito Sans", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 700px;
+  font-style: normal;
+  font-variation-settings: "wdth" 100, "YTLC" 500;
+  padding: 6px;
+  background-color: rgb(227, 137, 57);
+  border-color: rgb(227, 137, 57);
 }
 
 body .popup-overlay {
@@ -67,11 +113,15 @@ body .popup-overlay {
 }
 
 body #showPurchase {
-  background-color: black;
-  color: aliceblue;
-  padding: 10px 20px;
-  border: 2px solid black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #1a2222 !important;
+  font-family: "Nunito Sans", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 700px;
+  font-style: normal;
+  font-variation-settings: "wdth" 100, "YTLC" 500;
+  padding: 6px;
+  background-color: rgb(227, 137, 57);
+  border-color: rgb(227, 137, 57);
   z-index: 1000;
   position: fixed;
   top: 40px;
