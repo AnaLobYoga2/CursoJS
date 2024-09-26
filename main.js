@@ -112,6 +112,7 @@ verCarrito.addEventListener("click", () => {
             carrito.splice(index, 1);
             sessionStorage.setItem('carrito', JSON.stringify(carrito));
             document.body.removeChild(carritoDiv); 
+            document.body.removeChild(overlay);
             verCarrito.click(); 
         });
     });
@@ -122,15 +123,16 @@ verCarrito.addEventListener("click", () => {
     });
 
     document.getElementById("pay").addEventListener("click", () => {
-        let total = carrito.reduce((sum, item) => sum + item.valor, 0); // Calcular total
+        let total = carrito.reduce((sum, item) => sum + item.valor, 0); 
         let paypurchase = document.createElement("div");
         paypurchase.classList.add("popup");
         paypurchase.innerHTML = `
             <h3>Total a pagar: $${total}</h3>
-            <h2>Podés abonar mediante transferencia bancaria o por Mercado Pago.</h2>
+            <h2>Podés abonar mediante transferencia bancaria o por Mercado Pago, y envianos luego el comprobante por Whatsapp (encontras el botón en el margen inferior derecho de tu pantalla) indicando Nombre Apellido.</h2>
             <button id="transfer">Pagar mediante transferencia</button>
             <button id="MP">Pagar con MP</button>
-            <button id="add">Adjuntar comprobante</button>`;
+            <button id="dolar">Convertir a dolares para pagar por PayPAL</button>
+            <button id="close-popup">Cerrar</button>`;
         document.body.appendChild(paypurchase);
         document.body.removeChild(carritoDiv);
 
@@ -145,33 +147,13 @@ verCarrito.addEventListener("click", () => {
         
         document.getElementById("MP").addEventListener("click", () => {
             window.open('https://www.mercadopago.com.ar', '_blank');
-            document.body.removeChild(overlay2);
         });
 
-        document.getElementById("add").addEventListener("click", () => {
-            Swal.fire({
-                title: "Adjunta tu comprobante de pago",
-                input: "file",
-                inputAttributes: {
-                    "accept": "image/*",
-                    "aria-label": "Upload your profile picture"
-                },
-                showCancelButton: true
-            }).then((result) => {
-                if (result.isConfirmed && result.value) {
-                    const file = result.value[0]; 
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        Swal.fire({
-                            title: "Has adjuntado correctamente el comprobante",
-                            imageUrl: e.target.result,
-                            imageAlt: "The uploaded picture",
-                            icon: "succes",
-                        });
-                    };
-                    reader.readAsDataURL(file);
-                }
+
+        document.getElementById("close-popup").addEventListener("click", () => {
+            document.body.removeChild(paypurchase);
+            document.body.removeChild(overlay);
+            document.body.removeChild(overlay2);
             });
         });
     });
-});

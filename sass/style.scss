@@ -3,6 +3,39 @@ $color-secundario:rgb(188,199,199, 0.5);
 $color-blanco: #bcc7c7;
 $color-contraste: #ee5623;
 $color-naranja: rgb(227, 137, 57);
+body {
+    #wellcome {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw; 
+      height: 100vh; 
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/assets/AnaLobYoga62.jpg);
+      background-size: cover; 
+      background-position: center; 
+      z-index: 1000;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      flex-direction: column; 
+      
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  
+      
+      h2, p {
+        font-size: 24px;
+        color: orange; 
+        font-weight: bold;
+        text-align: center; 
+      }
+  
+     
+      h2 {
+        margin-bottom: 20px; 
+      }
+    }
+  }
+  
 
 body{
     margin: 0px;
@@ -142,6 +175,17 @@ body{
         z-index: 999;
     }
 }
+body{
+    .popup-overlay2 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+}
 body {
     #showPurchase {
         color:#1a2222 !important;
@@ -160,5 +204,13 @@ body {
         top: 40px;
         right: 20px;
         cursor: pointer;
+    }
+}
+body {
+    .boton-waap{
+        position: fixed;
+        z-index: 2000;
+        right: 20px;
+        bottom: 40px;
     }
 }
