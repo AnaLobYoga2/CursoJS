@@ -1,27 +1,3 @@
-// Logueo
-
-/* let usuarioOriginal="ANA";
-let passOriginal= 1234;
-let identificar= true
-
-do{
-let usuario = prompt("Ingresa tu usuario");
-if(usuario ===null){
-    break;
-} 
-if(usuario && usuario.trim().toUpperCase() !== usuarioOriginal){
-    alert("Usuario Incorrecto")
-}
-else {
-    let pass= parseInt (prompt("Ingresa tu contraseña"));
-    if (pass === passOriginal){
-        alert("¡Bienvenida Ana, abre tu consola!");
-        break; 
-    } 
-    else{alert("Contraseña Incorrecta")};
-}
-} while (identificar); */
-
 // LISTA SERVICIOS
 let servicios = [   
     {id: "ID: P4", nombre:"Pack 4 clases", valor:20000},
@@ -142,6 +118,45 @@ verCarrito.addEventListener("click", () => {
         
         document.getElementById("transfer").addEventListener("click", () => {
             Swal.fire("Cuenta Banco Supervielle - Ana Lobato - Alias: DIETA.ASOMO.GEN");
+            document.body.removeChild(overlay2);
+        });
+
+        async function obtenerTotalEnDolares() {
+            try {
+                
+                const response = await fetch('https://dolarapi.com/v1/dolares/blue');
+                const data = await response.json();
+    
+                
+                const tasaDolar = data.venta; 
+    
+                
+                let totalDolares = (total / tasaDolar).toFixed(2);
+    
+                
+                return totalDolares;
+    
+            } catch (error) {
+                console.error('Error al obtener el valor del dólar:', error);
+            }
+        }
+    
+        
+            document.getElementById("dolar").addEventListener("click", async () => {
+            let totalDolares = await obtenerTotalEnDolares(); 
+    
+           
+            Swal.fire({
+                title: 'Total del carrito',
+                text: `El total es: U$${totalDolares}`,
+                showCancelButton: true,
+                confirmButtonText: 'Pagar con PayPal',
+                cancelButtonText: 'Cerrar',
+                preConfirm: () => {
+                    window.open(`https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=tu-email@ejemplo.com&item_name=Tu+producto&amount=${totalDolares}&currency_code=USD`, '_blank');
+                }
+            });
+    
             document.body.removeChild(overlay2);
         });
         
